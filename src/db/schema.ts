@@ -1,8 +1,10 @@
 import {
   boolean,
+  decimal,
   integer,
   pgTable,
   primaryKey,
+  real,
   serial,
   text,
   timestamp,
@@ -92,4 +94,5 @@ export const items = pgTable('items', {
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
   name: text('name').notNull(),
+  startingPrice: real('startingPrice').notNull().default(0),
 });
