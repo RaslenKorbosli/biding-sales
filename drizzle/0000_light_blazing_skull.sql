@@ -1,0 +1,3 @@
+CREATE TABLE IF NOT EXISTS "bb-bids" (
+	"id" serial PRIMARY KEY NOT NULL
+);

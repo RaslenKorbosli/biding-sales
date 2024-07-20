@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  biding-sales-db:
+    image: postgres
+    restart: always
+    container_name: biding-sales-db
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: exmple
+
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+
+volumes:
+  postgres:
