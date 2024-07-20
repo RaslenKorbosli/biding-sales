@@ -10,7 +10,6 @@ import { Session } from 'next-auth';
 export default async function Home() {
   const session = await auth();
   if (!session) return null;
-  const erg = 5;
   if (!session.user) return null;
   const allItemsData = await database.query.items.findMany();
   console.log(allItemsData);
