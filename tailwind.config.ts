@@ -1,5 +1,7 @@
 import type { Config } from 'tailwindcss';
 const { fontFamily } = require('tailwindcss/defaultTheme');
+import { withUt } from 'uploadthing/tw';
+
 const config = {
   darkMode: ['class'],
   content: [
@@ -7,6 +9,7 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx,mdx}',
   ],
   prefix: '',
   theme: {

@@ -95,4 +95,5 @@ export const items = pgTable('items', {
     .references(() => users.id, { onDelete: 'cascade' }),
   name: text('name').notNull(),
   startingPrice: real('startingPrice').notNull().default(0),
+  fileUrl: text('fileUrl').notNull().default(''),
 });
