@@ -12,7 +12,7 @@ export default async function Home() {
     <main className="container py-12 mx-auto px-4">
       <h2 className="text-4xl font-semibold mb-8"> Items For Sale</h2>
 
-      <div className="grid grid-cols-4 gap-2 ">
+      <div className="grid lg:grid-cols-3 gap-2 sm:grid-cols-2 xl:grid-cols-4">
         {allItemsData.map((item) => (
           <ItemCard key={item.id} item={item} />
         ))}

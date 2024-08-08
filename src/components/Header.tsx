@@ -3,14 +3,14 @@ import SignIn from './SignIn';
 import SignOut from './SignOut';
 import { auth } from '@/auth';
 import Link from 'next/link';
-import { Hammer, TagsIcon } from 'lucide-react';
+import { Hammer, Tags, TagsIcon } from 'lucide-react';
 
 export default async function Header() {
   const session = await auth();
   // if (!session) return null;
   // if (!session.user) return null;
   return (
-    <div className=" bg-gray-100 p-4">
+    <div className=" bg-gray-100 p-4 shadow-md">
       <div className="container flex justify-between items-center mx-auto ">
         <Link href="/" className="flex items-center gap-2 hover:underline">
           <Image src="/logo.png" width={50} height={50} alt="logo image" />
@@ -21,7 +21,14 @@ export default async function Header() {
           className="flex items-center gap-2 hover:underline"
         >
           <Hammer />
-          <h1 className="capitalize">auction an item</h1>
+          <h1 className="capitalize">Auction an item</h1>
+        </Link>
+        <Link
+          href="/auctions"
+          className="flex items-center gap-2 hover:underline"
+        >
+          <Tags />
+          <h1 className="capitalize">My auctions</h1>
         </Link>
         <div className="flex items-center gap-2">
           {session?.user?.name}

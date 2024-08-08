@@ -97,3 +97,15 @@ export const items = pgTable('items', {
   startingPrice: real('startingPrice').notNull().default(0),
   fileUrl: text('fileUrl').notNull().default(''),
 });
+export type item = typeof items.$inferSelect;
+export const bids = pgTable('bids', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  bidValue: integer('bidValue').notNull(),
+  userName: text('userName').notNull(),
+  itemId: integer('itemId')
+    .notNull()
+    .references(() => items.id),
+  bidCreatedAt: timestamp('bidCreatedAt', { mode: 'date' }),
+});
