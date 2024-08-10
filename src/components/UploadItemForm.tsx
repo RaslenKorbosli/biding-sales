@@ -11,7 +11,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { addItem } from '@/actions/drizzleActions';
+
 import { useUploadThing } from '@/lib/uploadthing';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -21,6 +21,7 @@ import { z } from 'zod';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { ClientUploadedFileData } from 'uploadthing/types';
+import { addItem } from '@/app/item/actions';
 
 const isFile = (value: unknown): value is File =>
   typeof value === 'object' &&

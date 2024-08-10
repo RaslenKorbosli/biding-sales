@@ -1,3 +1,4 @@
+import { One, Relation, relations } from 'drizzle-orm';
 import {
   boolean,
   decimal,
@@ -95,6 +96,7 @@ export const items = pgTable('items', {
     .references(() => users.id, { onDelete: 'cascade' }),
   name: text('name').notNull(),
   startingPrice: real('startingPrice').notNull().default(0),
+  totalPrice: real('totalPrice').notNull().default(0),
   fileUrl: text('fileUrl').notNull().default(''),
 });
 export type item = typeof items.$inferSelect;
@@ -103,9 +105,19 @@ export const bids = pgTable('bids', {
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
   bidValue: integer('bidValue').notNull(),
+  userId: text('userId')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
   userName: text('userName').notNull(),
   itemId: integer('itemId')
     .notNull()
-    .references(() => items.id),
+    .references(() => items.id, { onDelete: 'cascade' }),
   bidCreatedAt: timestamp('bidCreatedAt', { mode: 'date' }),
 });
+export type bid = typeof bids.$inferSelect;
+export const bidsRelations = relations(bids, ({ one }) => ({
+  user: one(users, {
+    fields: [bids.userId],
+    references: [users.id],
+  }),
+}));
